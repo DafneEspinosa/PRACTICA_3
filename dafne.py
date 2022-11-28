@@ -27,15 +27,15 @@ def actualizar_pesos(lista, lista_2):
     
     new_lista=[]
     
-    i=0
-    while(i<len(lista)):
-        if float(lista[i])>(float(constante)+ float(lista_2[i])):
-            new_lista.insert(i,float(constante)+float(lista_2[i]))
-            print(new_lista)
-        else:  
-            new_lista.insert(i,float(lista[i]))
-            print(new_lista)
-        i+=1
+    for old_lista, update_lista in zip (lista,lista_2):
+        update_lista_cte = float(constante)+float(update_lista)
+        if float(old_lista)> update_lista_cte:
+            new_lista.append(update_lista_cte)
+        else:
+            new_lista.append(old_lista)
+
+    print(new_lista)
+    
     return new_lista
 
 actualizar_pesos(lista, lista_2)
