@@ -2,8 +2,6 @@ import math
 
 #Definición de infinito, infinito es de tipo FLOAT
 infinito=math.inf
-print((infinito+1000))
-
 #Pesos del nodo A-->B y del nodo B-->C
 peso_a_b=5
 peso_b_c=3
@@ -17,45 +15,37 @@ vector_c=[infinito,peso_b_c,0]
 vecinos=[]
 peso_vecinos=[]
 posiciones_vecinos=[]
+nodos_restantes=[]
+peso_nodos_restantes=[]
 
-###############################cambiar variable vector_
-def obtener_vecinos(vector_c):
-    for i in range(0,3):
-###############################cambiar variable vector_
-        if vector_c[i]!=0:
-###############################cambiar variable vector_
-            #peso de los vecinos cercanos
-            peso_vecinos.append(vector_c[i])
-            #poscion con indice de los vecinos
-            posiciones_vecinos.append(i)
-###############################cambiar variable vector_ 
+
+
+def obtener_vecinos_y_pesos(vector_c):
+    for i in range(len(vector_c)):
         if vector_c[i]==0:
-            #Nodo central
-            print("El nodo central se encuentra en la posicion:",i)
+            posicion_nodo_central=i
             if i==0:
-                nodo_principal="A"
-                print("Nodo principal:", nodo_principal)
+                nodo_central="A"
             if i==1:
-                nodo_principal="B"
-                print("Nodo principal:", nodo_principal)
+                nodo_central="B"
             if i==2:
-                nodo_principal="C"
-                print("Nodo principal:", nodo_principal)
-
-
-    for ii in posiciones_vecinos:
-        if ii==0:
-            vecinos.append("A")
-        if ii==1:
-            vecinos.append("B")
-        if ii==2:
-            vecinos.append("C")
-
-    print("Vecinos",vecinos)
-    print("posiciones de los vecinos",posiciones_vecinos)
-    print("peso hacia los vecinos:",peso_vecinos)
-
-    #DATOS A RETORNAR POR DEFINIR!!!!!!
-
- ###############################cambiar variable vector_
-obtener_vecinos(vector_c)
+                nodo_central="C"
+        else:
+            if i==0:
+                vecino="A"
+                vecinos.append(vecino)
+                peso_vecinos.append(vector_c[i])
+            if i==1:
+                vecino="B"
+                vecinos.append(vecino)
+                peso_vecinos.append(vector_c[i])
+            if i==2:
+                vecino="C"
+                vecinos.append(vecino)
+                peso_vecinos.append(vector_c[i])
+                
+    print("Nodo central:",nodo_central,"Posicion del nodo:",posicion_nodo_central)
+    return vecinos,peso_vecinos
+nodos_restantes,peso_nodos_restantes=obtener_vecinos_y_pesos(vector_c)
+print("Nodos restantes:", nodos_restantes)
+print("Peso Nodos restantes:", peso_nodos_restantes) 
